@@ -53,7 +53,7 @@ def validation():
 
 # Making Window
 window = tk.Tk()
-window.geometry("400x300")
+window.geometry("500x300")
 window.config(bg="#F7DC6F")
 window.resizable(width=False,height=False)
 window.title("Age Calculator")
