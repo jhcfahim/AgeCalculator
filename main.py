@@ -53,7 +53,7 @@ def validation():
 
 # Making Window
 window = tk.Tk()
-window.geometry("500x300")
+window.geometry("500x230")
 window.config(bg="#F7DC6F")
 window.resizable(width=False,height=False)
 window.title("Age Calculator")
@@ -73,7 +73,7 @@ e3=tk.Entry(window,width=5)
 # Calculate Age
 b1=tk.Button(window,text="Calculate Age!",font=("Arial",13),command=validation)
 l3 = tk.Label(window,text="The Calculated Age is: ",font=('Arial',12,"bold"),fg="darkgreen",bg="#F7DC6F")
-t1=tk.Text(window,width=5,height=0,state="disabled")
+t1=tk.Text(window,width=3,height=0,state="disabled",bg="lightgreen",font=("Arial",24,"bold"))
 
 # Exit 
 b2=tk.Button(window,text="Exit Application!",font=("Arial",13),command=exit)
@@ -81,16 +81,16 @@ b2=tk.Button(window,text="Exit Application!",font=("Arial",13),command=exit)
 # Placement
 l1.place(x=70,y=5)
 l2.place(x=10,y=40)
-l_d.place(x=100,y=70)
-l_m.place(x=100,y=95)
-l_y.place(x=100,y=120)
-e1.place(x=180,y=70)
-e2.place(x=180,y=95)
-e3.place(x=180,y=120)
-b1.place(x=100,y=150)
-l3.place(x=50,y=200)
-t1.place(x=240,y=203)
-b2.place(x=100,y=230)
+l_d.place(x=60,y=80)
+l_m.place(x=60,y=105)
+l_y.place(x=60,y=130)
+e1.place(x=120,y=80)
+e2.place(x=120,y=105)
+e3.place(x=120,y=130)
+b1.place(x=30,y=170)
+l3.place(x=230,y=70)
+t1.place(x=300,y=100)
+b2.place(x=300,y=170)
 
 """
 Improvments:
