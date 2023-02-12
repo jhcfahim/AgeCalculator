@@ -1,6 +1,7 @@
 from datetime import date
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 
 today = date.today()
 
@@ -22,25 +23,27 @@ def display_calc_age(age):
 def validation():
   # gets the three entries
   d = e_date.get()
-  m = e_month.get()
+  m = month_chosen.current()
+  #m = e_month.get()
   y = e_year.get()
 
   msg = ''
 
-  if len(d) == 0 or len(m) == 0 or len (y) == 0:
+  if len(d) == 0 or len (y) == 0:
       msg = 'day, month and year can\'t be empty'
   else:
     try:
       if any(ch.isdigit() for ch in d) == False:
         msg = 'day must be a NUMBER'
-      elif any(ch.isdigit() for ch in m) == False:
-        msg = 'month must be a NUMBER'
+      elif m == 0:
+        msg = 'choose an appropriate MONTH'
       elif any(ch.isdigit() for ch in y) == False:
         msg = 'year must be a NUMBER'
       else:
         #msg = 'Success!'
         day = int(d)
-        month = int(m)
+        month = m #month is already in number from list position
+        #month = int(m)
         year = int(y)
         calc_age = find_age(day, month, year)
         display_calc_age(calc_age)
@@ -48,7 +51,8 @@ def validation():
     except Exception as ep:
       messagebox.showerror('error', ep)
 
-  messagebox.showinfo('message', msg)
+  if msg != "":
+    messagebox.showinfo("message", msg)
 
 
 # Making Window
@@ -64,10 +68,29 @@ lb_subheading = tk.Label(window,font=("Arial",12),text="Enter your birthday whic
 
 # Date, Month and Year labels and entry
 lb_date=tk.Label(window,text="Date: ",font=('Arial',12,"bold"),fg="darkgreen",bg="#F7DC6F")
-lb_month=tk.Label(window,text="Month: ",font=('Arial',12,"bold"),fg="darkgreen",bg="#F7DC6F")
+lb_month=tk.Label(window,text="Month : ",font=('Arial',12,"bold"),fg="darkgreen",bg="#F7DC6F")
 lb_year=tk.Label(window,text="Year: ",font=('Arial',12,"bold"),fg="darkgreen",bg="#F7DC6F")
 e_date=tk.Entry(window,width=5)
-e_month=tk.Entry(window,width=5)
+
+# Combobox creation
+n = tk.StringVar()
+month_chosen = ttk.Combobox(window, textvariable = n, width=12)
+
+# Adding combobox drop down list
+month_chosen["values"] = ("Select a date...",
+                          "January",
+                          "February",
+                          "March",
+                          "April",
+                          "May",
+                          "June",
+                          "July",
+                          "August",
+                          "September",
+                          "October",
+                          "November",
+                          "December",)
+#e_month = tk.Entry(window,width=5)
 e_year=tk.Entry(window,width=5)
 
 # Calculate Age
@@ -81,19 +104,13 @@ btn_exit=tk.Button(window,text="Exit Application!",font=("Arial",13),command=exi
 # Placement
 lb_heading.place(x=70,y=5)
 lb_subheading.place(x=10,y=40)
-lb_date.place(x=60,y=80)
-lb_month.place(x=60,y=105)
-lb_year.place(x=60,y=130)
+lb_date.place(x=20,y=80)
+lb_month.place(x=20,y=105)
+lb_year.place(x=20,y=130)
 e_date.place(x=120,y=80)
-e_month.place(x=120,y=105)
+month_chosen.place(x=120,y=105)
 e_year.place(x=120,y=130)
 btn_calculate_age.place(x=30,y=170)
 lb_calculated_age.place(x=230,y=70)
-tbox_age.place(x=300,y=100)
+tbox_age.place(x=350,y=100)
 btn_exit.place(x=300,y=170)
-
-"""
-Improvments:
-Make GUI look better
-Prevent error when user enters word instead of number
-"""
