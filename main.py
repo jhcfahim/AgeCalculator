@@ -37,13 +37,20 @@ def validation():
         msg = 'day must be a NUMBER'
       elif m == 0:
         msg = 'choose an appropriate MONTH'
+      # Elif statements to prevent user entering dates that don't exist in that month
+      elif (m == 4 or m == 6 or m == 9 or m == 11) and int(d) > 30:
+        msg = 'Your month only has 30 days'
+      elif (m == 1 or m == 3 or m == 5 or m == 7 or m == 8 or m == 10 or m ==12) and int(d) > 31:
+        msg = 'Your month only has 31 days'
+      elif (m == 2) and (int(y) % 4) == 0 and int(d) > 29:
+        msg = 'Your month only has 29 days'
+      elif (m == 2) and (int(y) % 4) != 0 and int(d) > 28:
+        msg = 'Your month only has 28 days'
       elif any(ch.isdigit() for ch in y) == False:
         msg = 'year must be a NUMBER'
       else:
-        #msg = 'Success!'
         day = int(d)
         month = m #month is already in number from list position
-        #month = int(m)
         year = int(y)
         calc_age = find_age(day, month, year)
         display_calc_age(calc_age)
